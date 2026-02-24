@@ -1,0 +1,355 @@
+/* 
+   FONTES LOCAIS
+    */
+
+@font-face {
+  font-family:  'Inter';
+  src:          url('./assets/fonts/Inter_18pt-Regular.ttf') format('truetype');
+  font-weight:  400;
+  font-style:   normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family:  'Inter';
+  src:          url('./assets/fonts/Inter_18pt-Medium.ttf') format('truetype');
+  font-weight:  500;
+  font-style:   normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family:  'Inter';
+  src:          url('./assets/fonts/Inter_18pt-SemiBold.ttf') format('truetype');
+  font-weight:  600;
+  font-style:   normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family:  'Inter';
+  src:          url('./assets/fonts/Inter_18pt-Bold.ttf') format('truetype');
+  font-weight:  700;
+  font-style:   normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family:  'JetBrains Mono';
+  src:          url('./assets/fonts/JetBrainsMono-Regular.ttf') format('truetype');
+  font-weight:  400;
+  font-style:   normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family:  'JetBrains Mono';
+  src:          url('./assets/fonts/JetBrainsMono-Medium.ttf') format('truetype');
+  font-weight:  500;
+  font-style:   normal;
+  font-display: swap;
+}
+
+/* 
+   TAILWIND
+    */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+   BASE — Reset e estilos globais
+    */
+
+@layer base {
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    @apply scroll-smooth;
+    text-rendering:          optimizeLegibility;
+    -webkit-font-smoothing:  antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface-950 text-surface-50 font-sans antialiased;
+    min-height: 100dvh;
+  }
+
+  /* Scrollbar global */
+  ::-webkit-scrollbar       { @apply w-1.5 h-1.5; }
+  ::-webkit-scrollbar-track { @apply bg-surface-900; }
+  ::-webkit-scrollbar-thumb { @apply bg-surface-700 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-surface-600; }
+
+  /* Seleção de texto */
+  ::selection {
+    @apply bg-brand-500/30 text-surface-50;
+  }
+
+  /* Inputs — remove outline padrão do browser */
+  input, textarea, select {
+    @apply outline-none;
+  }
+
+  /* Foco visível apenas com teclado */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500 rounded;
+  }
+
+  /* Títulos */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-semibold leading-tight;
+  }
+
+  /* Números e dados técnicos sempre em mono */
+  .font-data {
+    @apply font-mono tabular-nums;
+  }
+}
+
+/* 
+   COMPONENTS — Classes reutilizáveis
+    */
+
+@layer components {
+
+   /* ── Cards ── */
+  .card {
+    @apply bg-surface-900 border border-surface-800
+           rounded-2xl p-4
+           transition-all duration-200;
+  }
+
+  .card-hover {
+    @apply card
+           hover:border-brand-500/30
+           hover:bg-surface-800/80
+           cursor-default;
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+
+  .card-critical {
+    @apply border-danger/50;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.20);
+  }
+
+  .card-warning {
+    @apply border-warning/40;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+  }
+
+  /* ── Badges ── */
+  .badge {
+    @apply inline-flex items-center gap-1
+           text-xs font-medium
+           px-2 py-0.5 rounded-full
+           border;
+  }
+
+  .badge-success {
+    @apply badge
+           bg-success/10 text-success
+           border-success/25;
+  }
+
+  .badge-warning {
+    @apply badge
+           bg-warning/10 text-warning
+           border-warning/25;
+  }
+
+  .badge-danger {
+    @apply badge
+           bg-danger/10 text-danger
+           border-danger/25;
+  }
+
+  .badge-neutral {
+    @apply badge
+           bg-surface-800 text-surface-400
+           border-surface-700;
+  }
+
+  .badge-brand {
+    @apply badge
+           bg-brand-500/10 text-brand-400
+           border-brand-500/25;
+  }
+
+  /* ── Botões ── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2
+           px-4 py-2 rounded-xl
+           text-sm font-medium
+           transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn
+           bg-brand-600 text-white
+           hover:bg-brand-500
+           shadow-glow-brand/50;
+  }
+
+  .btn-secondary {
+    @apply btn
+           bg-surface-800 text-surface-200
+           border border-surface-700
+           hover:bg-surface-700
+           hover:border-surface-600;
+  }
+
+  .btn-danger {
+    @apply btn
+           bg-danger/10 text-danger
+           border border-danger/25
+           hover:bg-danger/20;
+  }
+
+  .btn-ghost {
+    @apply btn
+           text-surface-400
+           hover:text-surface-200
+           hover:bg-surface-800;
+  }
+
+  .btn-icon {
+    @apply p-2 rounded-xl
+           text-surface-500
+           hover:text-surface-200
+           hover:bg-surface-800
+           transition-all duration-200;
+  }
+
+  /* ── Inputs ── */
+  .input {
+    @apply w-full
+           bg-surface-800 border border-surface-700
+           text-surface-100 text-sm
+           rounded-xl px-3 py-2
+           placeholder:text-surface-600
+           focus:border-brand-500 focus:bg-surface-700
+           transition-all duration-150;
+  }
+
+  .input-label {
+    @apply text-xs text-surface-500 font-medium mb-1 block;
+  }
+
+  /* ── Section headers ── */
+  .section-title {
+    @apply text-xs font-semibold text-surface-400
+           uppercase tracking-widest;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    @apply border-t border-surface-800 my-2;
+  }
+
+  /* ── Status dot (LED) ── */
+  .status-dot {
+    @apply w-2 h-2 rounded-full flex-shrink-0;
+  }
+
+  .status-dot-normal   { @apply status-dot bg-success; }
+  .status-dot-warning  { @apply status-dot bg-warning animate-blink; }
+  .status-dot-critical { @apply status-dot bg-danger  animate-pulse; }
+
+  /* ── Skeleton loader ── */
+  .skeleton {
+    @apply bg-surface-800 rounded-lg animate-pulse;
+  }
+
+  /* ── Tooltip base ── */
+  .tooltip {
+    @apply absolute z-50
+           bg-surface-800 text-surface-200
+           text-xs px-2 py-1
+           rounded-lg whitespace-nowrap
+           border border-surface-700
+           shadow-lg
+           pointer-events-none
+           opacity-0 group-hover:opacity-100
+           transition-opacity duration-200;
+  }
+
+  /* ── Drawer ── */
+  .drawer {
+    @apply fixed top-0 right-0 h-full
+           bg-surface-900 border-l border-surface-800
+           shadow-drawer overflow-y-auto
+           transition-transform duration-300 ease-in-out;
+  }
+
+  /* ── KPI value ── */
+  .kpi-value {
+    @apply text-2xl font-bold font-mono
+           tabular-nums leading-none;
+  }
+
+  .kpi-label {
+    @apply text-2xs text-surface-500
+           uppercase tracking-wider font-medium;
+  }
+
+  .kpi-unit {
+    @apply text-sm font-normal text-surface-500 ml-1;
+  }
+}
+
+/* 
+   UTILITIES — Helpers extras
+    */
+
+@layer utilities {
+
+  /* Truncar texto com número de linhas */
+  .line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+  .line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+  /* Números tabulares para dados */
+  .tabular { font-variant-numeric: tabular-nums; }
+
+  /* Glassmorphism sutil */
+  .glass {
+    @apply bg-surface-900/80 backdrop-blur-md
+           border border-surface-700/50;
+  }
+
+  /* Gradiente de fundo do dashboard */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Texto com gradiente */
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-400 to-brand-300
+           bg-clip-text text-transparent;
+  }
+
+  /* Scroll suave sem barra */
+  .scroll-hidden {
+    scrollbar-width: none;
+  }
+  .scroll-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Animação de entrada padrão para seções */
+  .section-enter {
+    animation: fade-in-up 0.25s ease-out forwards;
+  }
+}

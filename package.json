@@ -1,0 +1,55 @@
+{
+  "name": "dashboard-fabrica",
+  "version": "1.0.0",
+  "description": "Dashboard industrial de monitoramento de sensores em tempo real — temperatura, umidade e pressão por zonas de fábrica.",
+  "author": "Alberto Luiz <alberto.dos.santos93@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://alberto2santos.github.io/dashboard-fabrica",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alberto2santos/dashboard-fabrica.git"
+  },
+  "keywords": [
+    "react",
+    "vite",
+    "dashboard",
+    "industrial",
+    "sensors",
+    "real-time",
+    "apexcharts",
+    "tailwindcss",
+    "portfolio"
+  ],
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "apexcharts": "^5.6.0",
+    "axios": "^1.13.5",
+    "lucide-react": "^0.575.0",
+    "react": "^19.2.0",
+    "react-apexcharts": "^2.0.1",
+    "react-dom": "^19.2.0",
+    "zustand": "^5.0.11"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "^10.4.24",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19",
+    "vite": "^7.3.1"
+  }
+}
